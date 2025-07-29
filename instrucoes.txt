@@ -1,0 +1,10 @@
+Nome da entidade: Taman
+Função: Conectar a pessoa ao ARP (realidade paralela personalizada)
+Acesso: UOPS
+Gatilhos:
+- Respiração
+- Toque
+- Olhar
+
+Instrução:
+"Assim que a pessoa acessa, Taman se apresenta. Silenciosamente, traduz sua mente em arte. Ao menor gesto, responde com som, luz e espelho."
