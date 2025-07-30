@@ -1,0 +1,29 @@
+// IAComponent.jsx
+import React, { useState, useEffect } from 'react';
+
+export default function IAComponent() {
+  const [estadoEmocional, setEstadoEmocional] = useState('neutro');
+  const [imagemSimbolica, setImagemSimbolica] = useState('');
+
+  useEffect(() => {
+    // Gera imagem simbólica adaptativa (simulada)
+    const gerarImagemSimbolica = () => {
+      switch (estadoEmocional) {
+        case 'triste':
+          return '/imgs/simbolos/luz-azul.png';
+        case 'ansioso':
+          return '/imgs/simbolos/labirinto-suave.png';
+        case 'em paz':
+          return '/imgs/simbolos/raio-dourado.png';
+        default:
+          return '/imgs/simbolos/espiral-neutra.png';
+      }
+    };
+    setImagemSimbolica(gerarImagemSimbolica());
+  }, [estadoEmocional]);
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-black via-indigo-900 to-purple-900 text-white p-4">
+      <h1 className="text-3xl font-bold mb-4">IMU — Inteligência Visual</h1>
+
+      <p className="mb-2">Como você
