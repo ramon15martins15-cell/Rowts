@@ -1,52 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rowts - Semente de Luz</title>
-  <style>
-    body {
-      margin: 0;
-      background: radial-gradient(ellipse at center, #1d002c 0%, #000000 100%);
-      color: #f9f9f9;
-      font-family: 'Courier New', Courier, monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-    h1 {
-      font-size: 2.5em;
-      text-align: center;
-      background: linear-gradient(90deg, #00ffd5, #e600ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: pulse 3s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.85; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .assinatura {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.8em;
-      transform: scaleX(-1);
-      opacity: 0.4;
-      font-style: italic;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="manifest.json">
+  <title>UOPS - Semente de Luz</title>
 </head>
-<body>
-  <audio autoplay loop>
-    <source src="sons/entrada-suave.mp3" type="audio/mpeg" />
-    Seu navegador não suporta áudio.
-  </audio>
-  <h1>🌱 Sua Semente de Luz está Viva</h1>
-  <div class="assinatura">Sublimação~Martins</div>
+<body style="background-color:#000; color:#fff; text-align:center; font-family:sans-serif;">
+  <h1>🌱 UOPS - Semente de Luz</h1>
+  <p>Entre e receba sua semente de luz.</p>
+  <img src="logo-invertido.png" alt="Logo" width="180">
+  <audio src="entrada-suave.mp3" autoplay loop></audio>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(() => console.log('Service Worker registrado com sucesso'))
+        .catch(error => console.log('Erro no Service Worker:', error));
+    }
+  </script>
 </body>
 </html>
