@@ -1,0 +1,19 @@
+
+
+openai.api_key = "SUA_CHAVE_OPENAI_AQUI"
+
+print("🤖 IA Interativa Iniciada")
+print("Digite 'sair' para encerrar\n")
+
+while True:
+    user_input = input("Você: ")
+    if user_input.lower() in ["sair", "exit", "quit"]:
+        print("IA: Até logo! 🌟")
+        break
+
+    resposta = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": user_input}]
+    )
+
+    print("IA:", resposta.choices[0].message.content.strip())
