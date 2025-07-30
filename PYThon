@@ -1,0 +1,22 @@
+def texto_para_binario(texto):
+    return ' '.join(format(ord(c), '08b') for c in texto)
+
+def binario_para_texto(binario):
+    chars = binario.split()
+    return ''.join(chr(int(b, 2)) for b in chars)
+
+print("DIGITAL LINGUAGEM - CONVERSOR")
+print("1 - Texto para Binário")
+print("2 - Binário para Texto")
+escolha = input("Escolha (1 ou 2): ")
+
+if escolha == "1":
+    entrada = input("Digite o texto: ")
+    resultado = texto_para_binario(entrada)
+    print("Binário:", resultado)
+elif escolha == "2":
+    entrada = input("Digite o binário (separado por espaços): ")
+    resultado = binario_para_texto(entrada)
+    print("Texto:", resultado)
+else:
+    print("Opção inválida.")
