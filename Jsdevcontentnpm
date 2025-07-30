@@ -1,0 +1,170 @@
+// App.jsx
+import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
+export default function App() {
+  const [clients, setClients] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [sales, setSales] = useState([]);
+
+  const [clientName, setClientName] = useState("");
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [selectedClient, setSelectedClient] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState("");
+
+  // Load from localStorage
+  useEffect(() => {
+    setClients(JSON.parse(localStorage.getItem("clients") || "[]"));
+    setProducts(JSON.parse(localStorage.getItem("products") || "[]"));
+    setSales(JSON.parse(localStorage.getItem("sales") || "[]"));
+  }, []);
+
+  // Save to localStorage on changes
+  useEffect(() => {
+    localStorage.setItem("clients", JSON.stringify(clients));
+  }, [clients]);
+
+  useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(products));
+  }, [products]);
+
+  useEffect(() => {
+    localStorage.setItem("sales", JSON.stringify(sales));
+  }, [sales]);
+
+  const addClient = () => {
+    if (clientName.trim()) {
+      setClients([...clients, clientName.trim()]);
+      setClientName("");
+    }
+  };
+
+  const addProduct = () => {
+    if (productName.trim() && productPrice.trim()) {
+      setProducts([...products, { name: productName.trim(), price: parseFloat(productPrice) }]);
+      setProductName("");
+      setProductPrice("");
+    }
+  };
+
+  const addSale = () => {
+    if (selectedClient && selectedProduct) {
+      setSales([...sales, { client: selectedClient, product: selectedProduct }]);
+      setSelectedClient("");
+      setSelectedProduct("");
+    }
+  };
+
+  return (
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-3xl font-bold mb-6 text-center">Gestão Empresarial</h1>
+
+      <Tabs defaultValue="clientes" className="w-full">
+        <TabsList className="grid grid-cols-3 mb-4">
+          <TabsTrigger value="clientes">Clientes</TabsTrigger>
+          <TabsTrigger value="produtos">Produtos</TabsTrigger>
+          <TabsTrigger value="vendas">Vendas</TabsTrigger>
+        </TabsList>
+
+        {/* CLIENTES */}
+        <TabsContent value="clientes">
+          <Card>
+            <CardContent className="space-y-4 p-4">
+              <div className="flex gap-2">
+                <Input
+                  placeholder="Nome do cliente"
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
+                />
+                <Button onClick={addClient}>Adicionar</Button>
+              </div>
+              <ul className="list-disc pl-5">
+                {clients.map((c, i) => (
+                  <li key={i}>{c}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* PRODUTOS */}
+        <TabsContent value="produtos">
+          <Card>
+            <CardContent className="space-y-4 p-4">
+              <div className="flex gap-2">
+                <Input
+                  placeholder="Nome do produto"
+                  value={productName}
+                  onChange={(e) => setProductName(e.target.value)}
+                />
+                <Input
+                  placeholder="Preço"
+                  type="number"
+                  value={productPrice}
+                  onChange={(e) => setProductPrice(e.target.value)}
+                />
+                <Button onClick={addProduct}>Adicionar</Button>
+              </div>
+              <ul className="list-disc pl-5">
+                {products.map((p, i) => (
+                  <li key={i}>
+                    {p.name} - R$ {p.price.toFixed(2)}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* VENDAS */}
+        <TabsContent value="vendas">
+          <Card>
+            <CardContent className="space-y-4 p-4">
+              <div className="flex gap-2 flex-wrap">
+                <select
+                  value={selectedClient}
+                  onChange={(e) => setSelectedClient(e.target.value)}
+                  className="border p-2 rounded"
+                >
+                  <option value="">Selecione o cliente</option>
+                  {clients.map((c, i) => (
+                    <option key={i} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={selectedProduct}
+                  onChange={(e) => setSelectedProduct(e.target.value)}
+                  className="border p-2 rounded"
+                >
+                  <option value="">Selecione o produto</option>
+                  {products.map((p, i) => (
+                    <option key={i} value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+
+                <Button onClick={addSale}>Registrar Venda</Button>
+              </div>
+
+              <ul className="list-disc pl-5">
+                {sales.map((s, i) => (
+                  <li key={i}>
+                    {s.client} comprou {s.product}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
