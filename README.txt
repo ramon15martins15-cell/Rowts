@@ -8,14 +8,14 @@ const gerarImagem = async () => { const res = await fetch("http://localhost:5000
 
 const enviarSentimento = async () => { const res = await fetch("http://localhost:5000/ia", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ sentimento: estadoEmocional }), }); const data = await res.json(); setRespostaIA(data.mensagem); };
 
-const confirmarPagamento = () => { // Aqui simula confirmação do Pix setPagamentoConfirmado(true); };
+const confirmarPagamento = (ramon15martins15@gmail.com) => { // Aqui simula confirmação do Pix setPagamentoConfirmado(true); };
 
 return ( <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6"> <h1 className="text-4xl font-bold mb-4">🌌 UOPS - Semente Visual</h1>
 
 {!pagamentoConfirmado ? (
     <div className="bg-white text-black p-4 rounded-xl mb-4">
       <p>Envie R$2 para Pix:</p>
-      <strong>021587776-48</strong>
+      <strong>ramon15martins15@gmail.com</strong>
       <p className="text-xs">ramon15martins15@gmail.com</p>
       <Button onClick={confirmarPagamento} className="mt-2">Já paguei</Button>
     </div>
