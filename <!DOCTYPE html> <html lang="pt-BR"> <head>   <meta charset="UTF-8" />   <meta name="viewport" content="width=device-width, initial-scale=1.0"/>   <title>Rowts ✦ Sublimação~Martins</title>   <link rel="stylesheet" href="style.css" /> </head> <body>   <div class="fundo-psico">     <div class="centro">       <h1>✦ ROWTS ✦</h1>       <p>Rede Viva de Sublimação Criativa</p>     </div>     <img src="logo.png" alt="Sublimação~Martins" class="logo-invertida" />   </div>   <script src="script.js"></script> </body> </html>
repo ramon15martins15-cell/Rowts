@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ROWTS ✦ Sublimação~Martins</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #2b004a, #000000);
+      font-family: 'Courier New', monospace;
+      color: #ffffff;
+    }
+
+    .fundo-psico {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: pulsar 10s infinite alternate;
+      background: repeating-conic-gradient(from 0deg, #37004d 0%, #120022 25%, #37004d 50%, #120022 75%, #37004d 100%);
+    }
+
+    .centro {
+      text-align: center;
+      z-index: 2;
+    }
+
+    .centro h1 {
+      font-size: 4em;
+      animation: brilho 2s infinite alternate;
+    }
+
+    .centro p {
+      font-size: 1.2em;
+      opacity: 0.8;
+    }
+
+    .logo-invertida {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.5;
+      transform: scaleX(-1);
+      z-index: 10;
+    }
+
+    @keyframes brilho {
+      0% { text-shadow: 0 0 10px #ff00ff; }
+      100% { text-shadow: 0 0 20px #00ffff; }
+    }
+
+    @keyframes pulsar {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    .estrela {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      opacity: 0.7;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="fundo-psico">
+    <div class="centro">
+      <h1>✦ ROWTS ✦</h1>
+      <p>Rede Viva de Sublimação Criativa</p>
+    </div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAA..." alt="Sublimação~Martins" class="logo-invertida" />
+  </div>
+
+  <script>
+    // Partículas psicodélicas dinâmicas
+    const cores = ['#ff00ff', '#00ffff', '#ff8800', '#ffffff'];
+
+    for (let i = 0; i < 60; i++) {
+      const estrela = document.createElement('div');
+      estrela.classList.add('estrela');
+      estrela.style.background = cores[Math.floor(Math.random() * cores.length)];
+      estrela.style.top = Math.random() * 100 + '%';
+      estrela.style.left = Math.random() * 100 + '%';
+      estrela.style.boxShadow = `0 0 10px ${estrela.style.background}`;
+      document.body.appendChild(estrela);
+    }
+  </script>
+</body>
+</html>
