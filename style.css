@@ -1,41 +1,53 @@
+
 body {
   margin: 0;
   padding: 0;
+  background: radial-gradient(#0f0c29, #302b63, #24243e);
   font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle, #1b003b 0%, #000 100%);
-  color: #fff;
+  color: white;
+  overflow: hidden;
+}
+
+.portal {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-}
-.portal {
+  animation: pulse 6s infinite;
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 30px #a84bff;
 }
-button {
+
+.taman-ia {
+  width: 300px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.mensagem {
+  font-size: 1.8rem;
   margin-top: 20px;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 10px;
-  background: #8a2be2;
-  color: white;
-  font-size: 1em;
-  cursor: pointer;
-  transition: 0.3s;
+  animation: fadeIn 3s ease-out;
 }
-button:hover {
-  background: #a84bff;
+
+.assinatura {
+  font-size: 1rem;
+  opacity: 0.3;
+  transform: scaleX(-1);
+  margin-top: 10px;
 }
-.chat {
-  margin-top: 30px;
-  max-height: 300px;
-  overflow-y: auto;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 20px;
-  font-size: 0.9em;
+
+@keyframes pulse {
+  0% { background-color: #0f0c29; }
+  50% { background-color: #302b63; }
+  100% { background-color: #0f0c29; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
