@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Sensorial</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Entrada Visual -->
+  <section class="entrada" id="entrada">
+    <h1 class="titulo">Entre e receba sua <span class="semente">semente de luz</span></h1>
+    <button id="botao-ativar">Ativar Experiência</button>
+  </section>
+
+  <!-- IMU Visual -->
+  <section class="imu" id="imu">
+    <div class="entidade">
+      <p class="fala">Olá. Eu reconheço sua presença.</p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #000000, #121212);
+  color: white;
+  overflow: hidden;
+}
+
+.entrada {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: pulsar 4s infinite alternate;
+}
+
+.titulo {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+.semente {
+  color: #00ffd9;
+  font-weight: bold;
+  text-shadow: 0 0 10px #00ffd9;
+}
+
+#botao-ativar {
+  padding: 15px 30px;
+  font-size: 1em;
+  background: #00ffd9;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00ffd9;
+  transition: all 0.3s ease;
+}
+
+#botao-ativar:hover {
+  transform: scale(1.1);
+  background: #00ffaa;
+}
+
+.imu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 20, 0.95);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  animation: surgir 1s ease-out forwards;
+}
+
+.entidade {
+  background: radial-gradient(circle, #00ffd9 0%, #000000 80%);
+  padding: 40px;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #00ffd9;
+  text-align: center;
+}
+
+.fala {
+  font-size: 1.4em;
+  color: #ffffff;
+  text-shadow: 0 0 10px #00ffd9;
+}
+
+@keyframes pulsar {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+@keyframes surgir {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+document.getElementById("botao-ativar").addEventListener("click", function() {
+  document.getElementById("entrada").style.display = "none";
+  document.getElementById("imu").style.display = "flex";
+});
