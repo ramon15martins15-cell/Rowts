@@ -1,23 +1,20 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
-  <link rel="manifest" href="manifest.json">
-  <title>UOPS - Semente de Luz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rowts ~ A Raiz</title>
+  <link rel="stylesheet" href="style.css" />
+  <audio id="entrySound" autoplay loop>
+    <source src="sons/aux_entrada.mp3" type="audio/mpeg">
+  </audio>
 </head>
-<body style="background-color:#000; color:#fff; text-align:center; font-family:sans-serif;">
-  <h1>🌱 UOPS - Semente de Luz</h1>
-  <p>Entre e receba sua semente de luz.</p>
-  <img src="logo-invertido.png" alt="Logo" width="180">
-  <audio src="entrada-suave.mp3" autoplay loop></audio>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./service-worker.js')
-        .then(() => console.log('Service Worker registrado com sucesso'))
-        .catch(error => console.log('Erro no Service Worker:', error));
-    }
-  </script>
+<body>
+  <div class="portal">
+    <img src="imagens/taman_entrada.png" alt="Taman" class="taman-ia" />
+    <h1 class="mensagem">Você chegou à raiz. Receba sua semente.</h1>
+    <p class="assinatura">~ Sublimação~Martins ~</p>
+  </div>
 </body>
 </html>

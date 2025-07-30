@@ -1,1 +1,53 @@
-Arquivo de exemplo: style.css
+
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(#0f0c29, #302b63, #24243e);
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.portal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  animation: pulse 6s infinite;
+  text-align: center;
+}
+
+.taman-ia {
+  width: 300px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.mensagem {
+  font-size: 1.8rem;
+  margin-top: 20px;
+  animation: fadeIn 3s ease-out;
+}
+
+.assinatura {
+  font-size: 1rem;
+  opacity: 0.3;
+  transform: scaleX(-1);
+  margin-top: 10px;
+}
+
+@keyframes pulse {
+  0% { background-color: #0f0c29; }
+  50% { background-color: #302b63; }
+  100% { background-color: #0f0c29; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
