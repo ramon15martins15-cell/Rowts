@@ -1,0 +1,16 @@
+<!-- Botão Pix -->
+<button onclick="gerarPix('02158777648', valor)">Pagar via Pix</button>
+
+<!-- Mercado Pago -->
+<form action="https://www.mercadopago.com.br/checkout/v1/redirect" method="POST">
+  <input type="hidden" name="email" value="ramon15martins15@gmail.com" />
+  <input type="hidden" name="amount" value="2.00" />
+  <button type="submit">Pagar com Mercado Pago</button>
+</form>
+
+<!-- PayPal -->
+<form action="https://www.paypal.com/donate" method="post" target="_blank">
+  <input type="hidden" name="business" value="ramon15martins15@gmail.com" />
+  <input type="hidden" name="currency_code" value="USD" />
+  <button type="submit">Doar via PayPal</button>
+</form>
