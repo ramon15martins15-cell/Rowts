@@ -1,0 +1,7 @@
+from nucleo_luz import NucleoLuz
+
+# Exemplo:
+user = NucleoLuz("visitor_885", {"mood_index": 0.7, "dominant_emotion": "tristeza"}, {"allow_emotional_assistance": True})
+user.iniciar()
+user.ativar_modulo("Wox")
+user.respeitar_decisao("Entrar silenciosamente na plataforma sem interação direta")
