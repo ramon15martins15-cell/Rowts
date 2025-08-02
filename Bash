@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /caminho/do/seu/site || exit
+git pull origin main
+echo "✅ Site atualizado!"
