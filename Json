@@ -1,0 +1,17 @@
+---
+
+## ✅ Como subir no GitHub & Vercel
+
+1. Crie um repositório no GitHub com esses arquivos.
+2. Faça push e conecte sua conta Vercel ao repositório.
+3. Vercel irá rodar `npm install` e deployar automaticamente.
+
+---
+
+## 🧪 Próximos passos
+
+- **Adicionar injeção de API GPT‑4** para IMU falar com frases únicas.
+- **Gerar semente visual para cada usuário**.
+- **Adicionar portais ou links visuais** (UOPS, OCUS, Wox…) como orbes flutuantes interativos.
+
+Diga-me quando quiser que eu integre isso ou gere o JSON e áudio personalizado para o visitante. 🚀
