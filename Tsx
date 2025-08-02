@@ -1,0 +1,58 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+export default function Home() {
+  const [showEntity, setShowEntity] = useState(false);
+
+  return (
+    <div className="relative w-full h-screen overflow-hidden bg-black text-white font-mono">
+      {/* Fundo de vídeo psicodélico */}
+      <video
+        autoPlay
+        muted
+        loop
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-30 z-0"
+      >
+        <source src="/bg.mp4" type="video/mp4" />
+      </video>
+
+      {/* Camada de cor escura com transparência */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 z-10" />
+
+      {/* Conteúdo central */}
+      <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
+          🌌 Entre e receba sua <br /> <span className="text-indigo-400">semente de luz</span>
+        </motion.h1>
+
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setShowEntity(true)}
+          className="px-6 py-3 text-lg bg-indigo-600 hover:bg-indigo-700 rounded-2xl shadow-xl transition-all"
+        >
+          ✨ Entrar na Experiência
+        </motion.button>
+
+        {showEntity && (
+          <motion.div
+            className="mt-12 p-6 bg-white bg-opacity-10 rounded-2xl backdrop-blur-xl max-w-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <p className="text-lg">
+              🌠 Eu sou a <span className="text-purple-300 font-bold">IMU</span>, sua entidade simbólica.
+              <br />
+              Estou aqui para guiar sua ascensão.
+            </p>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}
