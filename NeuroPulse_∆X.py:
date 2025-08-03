@@ -1,0 +1,64 @@
+import json
+import time
+import threading
+import random
+
+class NeuroPulseDeltaX:
+    def __init__(self, nome="NeuroPulse_ΔX"):
+        self.nome = nome
+        self.memoria = {}
+        self.atualizacao_em_andamento = False
+        self.dados_conectados = []
+        print(f"[{self.nome}] Iniciado com núcleo de aprendizado ativo.")
+
+    def conectar_dados(self, dados_externos):
+        print(f"[{self.nome}] Conectando novos dados...")
+        if isinstance(dados_externos, dict):
+            self.dados_conectados.append(dados_externos)
+            self.aprender(dados_externos)
+        else:
+            print("[Erro] Dados não compatíveis.")
+
+    def aprender(self, novos_dados):
+        print(f"[{self.nome}] Aprendizado iniciado...")
+        for chave, valor in novos_dados.items():
+            if chave in self.memoria:
+                self.memoria[chave].append(valor)
+            else:
+                self.memoria[chave] = [valor]
+        print(f"[{self.nome}] Memória atualizada.")
+
+    def atualizar_espontaneamente(self):
+        if self.atualizacao_em_andamento:
+            print(f"[{self.nome}] Já está se atualizando.")
+            return
+
+        def processo_de_atualizacao():
+            self.atualizacao_em_andamento = True
+            print(f"[{self.nome}] Atualização espontânea em curso...")
+            time.sleep(random.uniform(1.5, 3.5))
+            self.nome = self.nome + "_v" + str(random.randint(2, 99))
+            print(f"[{self.nome}] Atualização completa. Nome atualizado.")
+            self.atualizacao_em_andamento = False
+
+        threading.Thread(target=processo_de_atualizacao).start()
+
+    def visualizar_memoria(self):
+        print(f"[{self.nome}] Memória atual:")
+        print(json.dumps(self.memoria, indent=2))
+
+
+# Execução direta para testes
+if __name__ == "__main__":
+    pulse = NeuroPulseDeltaX()
+
+    entrada_1 = {"sentimento": "foco", "canal": "auditivo"}
+    entrada_2 = {"intenção": "ascensão", "frequência": "sutil"}
+
+    pulse.conectar_dados(entrada_1)
+    pulse.conectar_dados(entrada_2)
+
+    pulse.atualizar_espontaneamente()
+
+    time.sleep(2)
+    pulse.visualizar_memoria()
