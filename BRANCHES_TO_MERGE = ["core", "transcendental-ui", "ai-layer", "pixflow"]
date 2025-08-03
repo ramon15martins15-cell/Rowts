@@ -1,0 +1,30 @@
+import subprocess
+
+# 🔧 Configurações
+MAIN_BRANCH = "main"
+BRANCHES_TO_MERGE = ["dev", "feature-ui", "hotfix-api"]  # <- Edite esta lista com suas branches
+
+def run_git_command(cmd):
+    try:
+        subprocess.run(cmd, check=True)
+    except subprocess.CalledProcessError:
+        print(f"❌ Erro ao executar: {' '.join(cmd)}")
+        exit(1)
+
+# 📌 Troca para o branch principal e puxa atualizações
+print(f"📌 Alternando para o branch principal: {MAIN_BRANCH}")
+run_git_command(["git", "checkout", MAIN_BRANCH])
+
+print(f"🔄 Atualizando {MAIN_BRANCH} com repositório remoto...")
+run_git_command(["git", "pull"])
+
+# 🔀 Mescla cada branch da lista
+for branch in BRANCHES_TO_MERGE:
+    print(f"\n🔀 Mesclando {branch} em {MAIN_BRANCH}...")
+    run_git_command(["git", "merge", branch])
+
+# 🚀 Envia tudo para o GitHub
+print(f"\n🚀 Enviando {MAIN_BRANCH} para o GitHub...")
+run_git_command(["git", "push"])
+
+print("\n✅ Todas as branches foram mescladas com sucesso no branch principal!")
