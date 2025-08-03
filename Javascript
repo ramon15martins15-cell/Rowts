@@ -1,0 +1,55 @@
+// approve-and-merge.js
+
+const axios = require('axios');
+
+// 🔒 Configure seu token GitHub
+const GITHUB_TOKEN = 'seu_token_aqui'; // coloque seu token pessoal do GitHub
+const OWNER = 'seu-usuario-ou-org';    // ex: 'RowtsOrg'
+const REPO = 'seu-repositorio';        // ex: 'rowts-core'
+
+async function listPullRequests() {
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/pulls`;
+  const res = await axios.get(url, {
+    headers: { Authorization: `token ${GITHUB_TOKEN}` }
+  });
+  return res.data;
+}
+
+async function approvePullRequest(prNumber) {
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/pulls/${prNumber}/reviews`;
+  await axios.post(url, {
+    event: "APPROVE"
+  }, {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json'
+    }
+  });
+}
+
+async function mergePullRequest(prNumber) {
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/pulls/${prNumber}/merge`;
+  await axios.put(url, {
+    merge_method: "squash"
+  }, {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`
+    }
+  });
+}
+
+async function run() {
+  const prs = await listPullRequests();
+  for (const pr of prs) {
+    if (pr.state === "open" && pr.mergeable_state !== "dirty") {
+      console.log(`🔁 Liberando PR #${pr.number} - ${pr.title}`);
+      await approvePullRequest(pr.number);
+      await mergePullRequest(pr.number);
+      console.log(`✅ PR #${pr.number} aprovado e mesclado`);
+    } else {
+      console.log(`⚠️ PR #${pr.number} não está pronto para merge`);
+    }
+  }
+}
+
+run().catch(err => console.error("Erro:", err.message));
